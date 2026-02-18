@@ -1,6 +1,6 @@
 // Use Render backend URL in production, local API in development
 const API = import.meta.env.PROD 
-  ? 'https://company-review-rating-platform-mern-stack.onrender.com/'  // Replace with your Render URL
+  ? 'https://company-review-rating-platform-mern-stack.onrender.com/api'
   : '/api';
 
 export async function fetchCompanies(q){

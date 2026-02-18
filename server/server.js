@@ -11,8 +11,8 @@ const app = express();
 // Configure CORS to allow Vercel frontend
 const corsOptions = {
   origin: [
-    'http://localhost:5173',  // Local development
-    'https://company-review-rating-platform-mern.vercel.app/'  // Your Vercel URL
+    'http://localhost:5173',
+    'https://company-review-rating-platform-mern.vercel.app'
   ],
   credentials: true,
   optionsSuccessStatus: 200
