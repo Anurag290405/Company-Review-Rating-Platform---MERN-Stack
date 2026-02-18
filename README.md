@@ -1,111 +1,58 @@
 # Company Review & Rating Platform
 
-A full-stack MERN application for reviewing and rating companies with modern UI design.
+A full-stack web application for browsing companies and submitting reviews with ratings.
 
-## Features
+## 🚀 Live Demo
 
-- 🏢 **Company Management**: Add and browse companies with detailed information
-- ⭐ **Review System**: Submit reviews with ratings and like functionality
-- 🎨 **Modern UI**: Clean interface with gradient designs and Tailwind CSS
-- 📸 **Image Upload**: Upload company logos directly
-- 🔍 **Advanced Search**: Filter companies by city and sort by name/rating
-- 📊 **Rating Analytics**: View average ratings and review counts
+- **Frontend:** [company-review-rating-platform-mern.vercel.app](https://company-review-rating-platform-mern.vercel.app)
+- **Backend API:** Hosted on Render
 
-## Tech Stack
+## 📋 Features
 
-**Frontend:**
-- React.js with Vite
-- Tailwind CSS for styling
-- React Router for navigation
-- Context API for state management
+- Browse and search companies
+- Add new companies with logo uploads
+- Submit reviews with star ratings
+- Like reviews
+- Responsive design with Tailwind CSS
 
-**Backend:**
-- Node.js & Express.js
-- MongoDB with Mongoose
-- RESTful API architecture
-- CORS enabled
+## 🛠️ Tech Stack
 
-## Setup Instructions
+- **Frontend:** React, Tailwind CSS, Vite
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB Atlas
+
+## 🏃 Quick Start
 
 ### Prerequisites
-- Node.js 16+ 
-- MongoDB Atlas account or local MongoDB
+- Node.js 16+
+- MongoDB connection string
 
-### 1. Backend Setup
+### Installation
 
-```powershell
+1. **Clone the repository**
+```bash
+git clone https://github.com/Anurag290405/Company-Review-Rating-Platform---MERN-Stack.git
+cd Company-Review-Rating-Platform---MERN-Stack
+```
+
+2. **Setup Backend**
+```bash
 cd server
-copy .env.example .env
-# Edit .env and add your MongoDB connection string
 npm install
-```
-
-**Seed Database with Sample Data:**
-```powershell
-node seed.js
-```
-This will create 10 companies with 25+ reviews in your MongoDB Atlas database.
-
-**Start Server:**
-```powershell
+cp .env.example .env
+# Add your MONGO_URI to .env
 node server.js
 ```
-Backend runs on: http://localhost:5000
 
-### 2. Frontend Setup
-
-```powershell
+3. **Setup Frontend**
+```bash
 cd client
 npm install
 npm run dev
 ```
-Frontend runs on: http://localhost:5173
 
-## Database Seeding
+Visit `http://localhost:5173` to view the app.
 
-The project includes a seeding script to populate your database with sample data:
-- 10 diverse companies across different industries
-- 2-3 reviews per company
-- Realistic ratings and review content
+## 📝 License
 
-## API Endpoints
-
-- `GET /api/companies` - Get all companies
-- `POST /api/companies` - Create new company
-- `GET /api/companies/:id` - Get company details
-- `POST /api/reviews/company/:companyId` - Add review
-- `PATCH /api/reviews/:id/like` - Like a review
-
-## Project Structure
-
-```
-├── client/                 # React frontend
-│   ├── src/
-│   │   ├── components/    # Reusable UI components
-│   │   ├── pages/         # Page components
-│   │   ├── context/       # State management
-│   │   └── api.js         # API calls
-│   └── package.json
-│
-├── server/                # Express backend
-│   ├── controllers/       # Request handlers
-│   ├── models/           # MongoDB schemas
-│   ├── routes/           # API routes
-│   ├── seed.js           # Database seeding script
-│   └── server.js         # Entry point
-│
-└── README.md
-```
-
-## Environment Variables
-
-Create a `.env` file in the server directory:
-
-```env
-MONGO_URI=your_mongodb_connection_string
-PORT=5000
-```
-
-## Contributing
-
-Feel free to submit issues and enhancement requests!
+MIT

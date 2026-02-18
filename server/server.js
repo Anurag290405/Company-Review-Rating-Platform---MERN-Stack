@@ -7,7 +7,17 @@ const companiesRouter = require('./routes/companies');
 const reviewsRouter = require('./routes/reviews');
 
 const app = express();
-app.use(cors());
+
+// Configure CORS to allow Vercel frontend
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',  // Local development
+    'https://company-review-rating-platform-mern.vercel.app/'  // Your Vercel URL
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
