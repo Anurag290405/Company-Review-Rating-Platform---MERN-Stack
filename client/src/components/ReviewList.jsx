@@ -18,13 +18,11 @@ export default function ReviewList(){
                   <div className="font-semibold">{r.fullName}</div>
                   <div className="text-sm text-gray-500">{r.subject}</div>
                 </div>
-                <div className="text-sm text-yellow-400">{Array.from({length:5}).map((_,i)=>(<span key={i}>{i < r.rating ? '★' : '☆'}</span>))}</div>
+                <div className="text-lg text-yellow-400">{Array.from({length:5}).map((_,i)=>(<span key={i}>{i < r.rating ? '★' : '☆'}</span>))}</div>
               </div>
               <div className="mt-2 text-gray-700">{r.text}</div>
             </div>
-            <div className="flex items-start">
-              <button onClick={()=>likeReview(r._id, selectedCompany._id)} className="text-sm text-gray-600">Like ({r.likes||0})</button>
-            </div>
+          
           </div>
         </li>
       ))}

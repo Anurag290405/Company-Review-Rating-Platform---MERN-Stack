@@ -19,12 +19,8 @@ export default function AddReviewModal({ companyId, onClose }){
           <div className="absolute -top-1 -left-[34px] w-[116px] h-[116px] rounded-full bg-gradient-to-br from-[#D100F3] to-[#002BC5] z-0" />
           <div className="absolute -top-[55px] left-7 w-[116px] h-[116px] rounded-full bg-gradient-to-br from-[#D100F3] to-[#002BC5] opacity-25 z-0" />        
         {/* Close button */}
-        <button 
-          onClick={onClose} 
-          className="absolute right-4 top-4 text-gray-500 w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-md hover:bg-gray-100 z-50"
-        >
-          ✕
-        </button>
+               <button onClick={onClose} aria-label="Close" className="absolute right-3 top-3 text-3xl  text-gray-600 hover:text-gray-800 z-50">×</button>
+
         
         {/* Content */}
         <div className="relative z-10 pt-20 px-12 pb-6 h-full flex flex-col overflow-y-auto">

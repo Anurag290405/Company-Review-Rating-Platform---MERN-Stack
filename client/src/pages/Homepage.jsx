@@ -90,24 +90,22 @@ export default function Homepage(){
         {/* Controls Section */}
         <div className="h-[100px] px-[188px] pt-[20px] flex items-center gap-3">
           {/* Select City Box */}
-          <div className="relative flex-1 max-w-[413px] min-w-[260px] h-[37px] -mt-3">
+          <div className="flex-1 max-w-[413px] min-w-[260px] h-[37px] border border-gray-300 rounded-[5px] px-3 flex items-center gap-2">
             <select
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
-              className="border border-gray-300 px-3 pr-9 w-full h-full rounded-[5px] appearance-none"
+              className="w-full h-full bg-transparent appearance-none outline-none"
             >
               <option value="">Select City</option>
               {cityOptions.map((option) => (
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </select>
-            <span className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-              <img
-                src={locationIcon}
-                alt="Location"
-                className="w-22px h-22px"
-              />
-            </span>
+            <img
+              src={locationIcon}
+              alt="Location"
+              className="w-5 h-5 shrink-0"
+            />
           </div>
 
           {/* Find Company Button */}
@@ -151,9 +149,15 @@ export default function Homepage(){
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="text-lg font-semibold">{company.name}</h3>
-                      <div className="text-sm text-gray-500">{company.location || ''} {company.city ? `, ${company.city}` : ''}</div>
+                      <div className="flex items-center gap-1 text-sm text-gray-500">
+                        <img
+                          src={locationIcon}
+                          alt="Location"
+                          className="w-4 h-4 shrink-0 grayscale opacity-70"
+                        />
+                        <span>{company.location || ''} {company.city ? `, ${company.city}` : ''}</span>
+                      </div>
                     </div>
-                    <div className="text-right text-sm text-gray-400">Founded on {company.foundedOn || '01-01-2016'}</div>
                   </div>
                   <div className="mt-3 flex items-center gap-4">
                     <div className="text-lg font-bold">{avg.toFixed(1)}</div>
@@ -161,7 +165,8 @@ export default function Homepage(){
                     <div className="text-sm text-gray-600">{reviewCount} {reviewCount === 1 ? 'Review' : 'Reviews'}</div>
                   </div>
                 </div>
-                <div>
+                <div className="flex flex-col items-end gap-2">
+                  <div className="text-right text-sm text-gray-400">Founded on {company.foundedOn || '01-01-2016'}</div>
                   <Link to={`/company/${company._id}`} className="bg-gray-800 text-white px-4 py-2 rounded inline-block">Detail Review</Link>
                 </div>
               </div>

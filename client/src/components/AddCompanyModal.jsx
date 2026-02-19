@@ -39,9 +39,9 @@ export default function AddCompanyModal({ onClose }){
           <div className="absolute -top-1 -left-[34px] w-[116px] h-[116px] rounded-full bg-gradient-to-br from-[#D100F3] to-[#002BC5] z-0" />
           <div className="absolute -top-[55px] left-7 w-[116px] h-[116px] rounded-full bg-gradient-to-br from-[#D100F3] to-[#002BC5] opacity-25 z-0" />
 
-          <button onClick={onClose} aria-label="Close" className="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-500 shadow z-50">×</button>
+          <button onClick={onClose} aria-label="Close" className="absolute right-3 top-3 text-3xl  text-gray-600 hover:text-gray-800 z-50">×</button>
 
-          <div className="text-center mt-8 mb-6 relative z-10">
+          <div className="text-center mt-10 mb-6 relative z-10">
             <h3 className="text-lg font-semibold">Add Company</h3>
           </div>
 
@@ -80,7 +80,7 @@ export default function AddCompanyModal({ onClose }){
 
               <div>
                 <label className="block text-xs text-gray-500 mb-1">Company Logo</label>
-                <div className="flex items-center gap-3">
+                <div className="inline-flex items-center gap-3">
                   <input
                     ref={fileInputRef}
                     type="file"
@@ -101,16 +101,7 @@ export default function AddCompanyModal({ onClose }){
                 </div>
               </div>
 
-              <div>
-                <label className="block text-xs text-gray-500 mb-1">Description</label>
-                <textarea 
-                  value={form.description} 
-                  onChange={e=>setForm({...form, description:e.target.value})}
-                  className="w-full mt-0 border border-gray-200 rounded-md px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-purple-300" 
-                  placeholder="Enter description"
-                  rows="3"
-                />
-              </div>
+          
 
               <div className="text-center pt-2">
                 <button type="submit" className="px-8 py-2 rounded-full text-white shadow bg-gradient-to-br from-[#D100F3] to-[#002BC5]">
