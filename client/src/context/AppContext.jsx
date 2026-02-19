@@ -30,12 +30,14 @@ export function AppProvider({ children }){
   async function addReview(companyId, payload){
     const r = await api.createReview(companyId, payload);
     await selectCompany(companyId);
+    await loadCompanies();
     return r;
   }
 
   async function likeReview(id, companyId){
     await api.likeReview(id);
     await selectCompany(companyId);
+    await loadCompanies();
   }
 
   return (

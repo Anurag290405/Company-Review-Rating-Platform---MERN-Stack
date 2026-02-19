@@ -1,4 +1,5 @@
 import React from 'react';
+import searchIcon from '../assests/akar-icons_search.png';
 
 export default function Header(){
   return (
@@ -10,11 +11,18 @@ export default function Header(){
       </div>
 
       {/* Search bar */}
-      <div className="absolute w-[384px] h-[37px] top-[18px] left-[730px]">
+      <div className="absolute w-[384px] h-[37px] top-[18px] left-[730px] relative">
         <input 
           placeholder="Search..." 
-          className="w-full h-full border border-gray-300 px-3 rounded-[5px]" 
+          className="w-full h-full border border-gray-300 px-3 pr-9 rounded-[5px]" 
         />
+        <span className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+          <img
+            src={searchIcon}
+            alt="Search"
+            className="w-4 h-4"
+          />
+        </span>
       </div>
 
       {/* SignUp button */}

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext.jsx';
 import Header from '../components/Header.jsx';
 import ReviewList from '../components/ReviewList.jsx';
@@ -7,8 +7,7 @@ import AddReviewModal from '../components/AddReviewModal.jsx';
 
 export default function CompanyDetailPage(){
   const { id } = useParams();
-  const navigate = useNavigate();
-  const { selectedCompany, selectCompany, avgRating } = useContext(AppContext);
+  const { selectedCompany, selectCompany, avgRating, reviews } = useContext(AppContext);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(()=>{
@@ -45,7 +44,7 @@ export default function CompanyDetailPage(){
                   <div className="flex items-center gap-4">
                     <div className="text-lg font-bold">{(avgRating || 0).toFixed(1)}</div>
                     <div className="text-yellow-400">{Array.from({ length: 5 }).map((_, i) => (<span key={i}>{i < Math.round(avgRating || 0) ? '★' : '☆'}</span>))}</div>
-                    <div className="text-sm text-gray-600">{(selectedCompany.reviewsCount || 0)} Reviews</div>
+                    <div className="text-sm text-gray-600">{selectedCompany.reviewCount ?? reviews.length} Reviews</div>
                   </div>
                   <button
                     onClick={() => setShowModal(true)}
