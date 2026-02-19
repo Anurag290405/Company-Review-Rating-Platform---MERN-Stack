@@ -2,12 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext.jsx';
 import Header from '../components/Header.jsx';
-import ReviewList from '../components/ReviewList.jsx';
 import AddReviewModal from '../components/AddReviewModal.jsx';
 
 export default function CompanyDetailPage(){
   const { id } = useParams();
-  const { selectedCompany, selectCompany, avgRating, reviews } = useContext(AppContext);
+  const { selectedCompany, selectCompany, avgRating, reviews, likeReview } = useContext(AppContext);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(()=>{
@@ -61,8 +60,34 @@ export default function CompanyDetailPage(){
               <hr className="border-t border-gray-300" />
             </div>
 
+            {/* Reviews List */}
             <div className="mt-6">
-              <ReviewList />
+              {!reviews || reviews.length === 0 ? (
+                <div className="text-gray-500">No reviews yet</div>
+              ) : (
+                <ul className="space-y-4">
+                  {reviews.map(r=> (
+                    <li key={r._id} className="bg-white p-4 rounded shadow-sm">
+                      <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-600">{r.fullName ? r.fullName.split(' ').map(n=>n[0]).slice(0,2).join('') : 'U'}</div>
+                        <div className="flex-1">
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <div className="font-semibold">{r.fullName}</div>
+                              <div className="text-sm text-gray-500">{r.subject}</div>
+                            </div>
+                            <div className="text-lg text-yellow-400">{Array.from({length:5}).map((_,i)=>(<span key={i}>{i < r.rating ? '★' : '☆'}</span>))}</div>
+                          </div>
+                          <div className="mt-2 text-gray-700">{r.text}</div>
+                        </div>
+                        <div className="flex items-start">
+                          <button onClick={()=>likeReview(r._id, selectedCompany._id)} className="text-sm text-gray-600 hover:text-gray-800">Like ({r.likes||0})</button>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         </div>
