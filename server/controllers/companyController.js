@@ -1,6 +1,10 @@
 const Company = require('../models/Company');
 const Review = require('../models/Review');
 
+function escapeRegex(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 exports.createCompany = async (req, res) => {
   try {
     const c = new Company(req.body);
@@ -15,8 +19,16 @@ exports.listCompanies = async (req, res) => {
   try {
     const { search, city } = req.query;
     const q = {};
-    if (search) q.name = { $regex: search, $options: 'i' };
-    if (city) q.city = city;
+    if (search) {
+      q.name = { $regex: escapeRegex(search.trim()), $options: 'i' };
+    }
+    if (city) {
+      const normalizedCity = city.trim();
+      if (normalizedCity) {
+        const cityRegex = { $regex: `^${escapeRegex(normalizedCity)}$`, $options: 'i' };
+        q.$or = [{ city: cityRegex }, { location: cityRegex }];
+      }
+    }
     const list = await Company.find(q).sort({ createdAt: -1 }).lean();
 
     if (!list.length) {
