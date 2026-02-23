@@ -25,3 +25,27 @@ exports.likeReview = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.updateReview = async (req, res) => {
+  try {
+    const review = await Review.findById(req.params.id);
+
+    if (!review) {
+      return res.status(404).json({ error: 'Review not found' });
+    }
+
+    // Only allow specific fields to update
+    const { fullName, subject, text, rating } = req.body;
+
+    if (fullName !== undefined) review.fullName = fullName;
+    if (subject !== undefined) review.subject = subject;
+    if (text !== undefined) review.text = text;
+    if (rating !== undefined) review.rating = rating;
+
+    await review.save();
+
+    res.json(review);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
