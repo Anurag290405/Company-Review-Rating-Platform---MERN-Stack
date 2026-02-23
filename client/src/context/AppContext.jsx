@@ -34,6 +34,12 @@ export function AppProvider({ children }){
     return r;
   }
 
+  async function editReview(reviewId, companyId, payload){
+    await api.updateReview(reviewId, { ...payload, rating: Number(payload.rating) });
+    await selectCompany(companyId);
+    await loadCompanies();
+  }
+
   async function likeReview(id, companyId){
     await api.likeReview(id);
     await selectCompany(companyId);
@@ -43,7 +49,7 @@ export function AppProvider({ children }){
   return (
     <AppContext.Provider value={{
       companies, loadCompanies, addCompany,
-      selectedCompany, selectCompany, reviews, addReview, likeReview, avgRating
+      selectedCompany, selectCompany, reviews, addReview, editReview, likeReview, avgRating
     }}>{children}</AppContext.Provider>
   );
 }

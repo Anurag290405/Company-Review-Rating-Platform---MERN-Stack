@@ -8,4 +8,7 @@ router.post('/company/:companyId', controller.createReview);
 // Like a review (increment)
 router.patch('/:id/like', controller.likeReview);
 
+// Update a review
+router.patch('/:id', controller.updateReview);
+
 module.exports = router;
