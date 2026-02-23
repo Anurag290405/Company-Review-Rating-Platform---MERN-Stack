@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext.jsx';
 import Header from '../components/Header.jsx';
 import AddReviewModal from '../components/AddReviewModal.jsx';
+import EditReviewModal from '../components/EditReviewModal.jsx';
 
 export default function CompanyDetailPage(){
   const { id } = useParams();
   const { selectedCompany, selectCompany, avgRating, reviews, likeReview } = useContext(AppContext);
   const [showModal, setShowModal] = useState(false);
+  const [editingReview, setEditingReview] = useState(null);
 
   useEffect(()=>{
     if(id) selectCompany(id);
@@ -80,8 +82,9 @@ export default function CompanyDetailPage(){
                           </div>
                           <div className="mt-2 text-gray-700">{r.text}</div>
                         </div>
-                        <div className="flex items-start">
+                        <div className="flex items-start gap-2">
                           <button onClick={()=>likeReview(r._id, selectedCompany._id)} className="text-sm text-gray-600 hover:text-gray-800">Like ({r.likes||0})</button>
+                          <button onClick={()=>setEditingReview(r)} aria-label={`Edit review by ${r.fullName}`} className="text-sm text-blue-600 hover:text-blue-800">Edit Review</button>
                         </div>
                       </div>
                     </li>
@@ -93,6 +96,7 @@ export default function CompanyDetailPage(){
         </div>
 
         {showModal && <AddReviewModal companyId={selectedCompany._id} onClose={() => setShowModal(false)} />}
+        {editingReview && <EditReviewModal review={editingReview} companyId={selectedCompany._id} onClose={() => setEditingReview(null)} />}
       </div>
     </div>
   );

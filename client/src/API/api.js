@@ -24,6 +24,11 @@ export async function createReview(companyId, payload){
   return res.json();
 }
 
+export async function updateReview(id, payload){
+  const res = await fetch(`${API}/reviews/${id}`, { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload)});
+  return res.json();
+}
+
 export async function likeReview(id){
   const res = await fetch(`${API}/reviews/${id}/like`, { method: 'PATCH' });
   return res.json();
